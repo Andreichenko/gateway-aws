@@ -88,7 +88,7 @@ resource "aws_security_group" "nginx-ng" {
 
     ingress {
       from_port = 0
-      protocol = "tcp"
+      protocol = "tcp"  //tcp
       to_port = 0
     }
 }
