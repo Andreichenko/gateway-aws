@@ -61,5 +61,10 @@ resource "aws_route_table_association" "rta_subnet1" {
   subnet_id = "${aws_route_table.rtb.id}"
 }
 
+resource "aws_route_table_association" "rta_subnet2" {
+  route_table_id = "${aws_subnet.subnet2.id}"
+  subnet_id = "${aws_route_table.rtb.id}"
+}
+
 
 
