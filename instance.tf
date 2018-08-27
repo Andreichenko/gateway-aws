@@ -93,6 +93,30 @@ resource "aws_security_group" "nginx-ng" {
     }
 }
 
+resource "aws_instance" "nginx1" {
+  ami = "ami-c68c1dd3"
+  instance_type = "t2.micro"
+  subnet_id = "${aws_subnet.subnet1.id}}"
+  vpc_security_group_ids = ["${aws_security_group.nginx-ng.id}"]
+  key_name = "${var.key_name}"
+
+  connection {
+    user = "ec2-user"
+    private_key = "${var.private_key_path}"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+    "sudo yum install ngnix -y",
+    "sudo service nginx start",
+    "echo '<html><head><title> team </title></head></html>"]
+  }
+}
+
+output "aws_instance_public_dns" {
+  value = "${aws_instance.nginx1.public_dns}}"
+}
+
 
 
 
