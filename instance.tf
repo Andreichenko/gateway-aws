@@ -66,5 +66,35 @@ resource "aws_route_table_association" "rta_subnet2" {
   subnet_id = "${aws_route_table.rtb.id}"
 }
 
+// security group
+
+resource "aws_security_group" "nginx-ng" {
+  name = "nginx_ng"
+  vpc_id = "${aws_vpc.vpc.id}"
+
+    ingress {
+      from_port = 22
+      protocol = "tcp"
+      to_port = 22
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+      from_port = 80
+      protocol = "tcp"
+      to_port = 80
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+      from_port = 0
+      protocol = "tcp"
+      to_port = 0
+    }
+}
+
+
+
+
 
 
