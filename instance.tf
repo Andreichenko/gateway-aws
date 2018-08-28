@@ -33,6 +33,8 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = "${aws_vpc.vpc.id}"
 }
 
+// subnet
+
 resource "aws_subnet" "subnet1" {
   cidr_block = "${var.subnet1_address_space}}"
   vpc_id = "${aws_vpc.vpc.id}"
@@ -46,6 +48,8 @@ resource "aws_subnet" "subnet2" {
   map_public_ip_on_launch = "true"
   availability_zone = "${data.aws_availability_zones.avaliable.names[1]}"
 }
+
+// route
 
 resource "aws_route_table" "rtb" {
   vpc_id = "${aws_vpc.vpc.id}"
