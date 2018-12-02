@@ -70,7 +70,7 @@ resource "aws_route_table_association" "rta_subnet2" {
   subnet_id = "${aws_route_table.rtb.id}"
 }
 
-// security group
+// security groups
 
 resource "aws_security_group" "nginx-ng" {
   name = "nginx_ng"
